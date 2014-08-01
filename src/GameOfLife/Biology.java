@@ -23,30 +23,30 @@ public class Biology {
 	
 	
 	public void born(){
-		this.prevSatuts=this.status;
-		this.status=1;
+		prevSatuts=status;
+		status=1;
 	}
 	public void die(){
-		this.prevSatuts=this.status;
-		this.status=0;
+		prevSatuts=status;
+		status=0;
 	}
 	
 	//find nextGeneration status
 	public void nextGeneration(){
-		if(this.status==0)//die == no biology
+		if(status==0)//die == no biology
 			return;
-		this.nextStatus = 0;
+		nextStatus = 0;
 		int cnt=0;
 		for(int i=0;i<9;i++)
-			if(i==4||this.neibor[i]==null)//out of range
+			if(i==4||neibor[i]==null)//out of range
 				continue;
-			else if(this.neibor[i].status==1)
+			else if(neibor[i].status==1)
 				cnt++;
 		
 		if(cnt==1)
 			findBornPos();
 		else if(cnt>1)
-			this.nextStatus = 2;
+			nextStatus = 2;
 	}
 	
 	//find Multiply pos
@@ -56,8 +56,8 @@ public class Biology {
 			if(i>300){//maybe can't born
 				int j;
 				for(j=0;j<9;j++)
-					if(i==4||this.neibor[j]==null||
-							this.neibor[j].status==1||this.neibor[j].nextStatus!=0)
+					if(i==4||neibor[j]==null||
+							neibor[j].status==1||neibor[j].nextStatus!=0)
 						continue;
 					else
 						break;
@@ -67,20 +67,20 @@ public class Biology {
 			
 			
 			pos=(int)(Math.random()*9);
-			if(pos==4||this.neibor[pos]==null||
-					this.neibor[pos].status==1||this.neibor[pos].nextStatus!=0)
+			if(pos==4||neibor[pos]==null||
+					neibor[pos].status==1||neibor[pos].nextStatus!=0)
 				continue;
 			else
 				break;
 		}
 		if(pos<9){ // find
-			this.neibor[pos].nextStatus=1;	
+			neibor[pos].nextStatus=1;	
 		}
 	}
 	
 	//do evolution
 	public void evolution(){
-		switch(this.nextStatus){
+		switch(nextStatus){
 		case 2:
 			die();
 			break;
@@ -91,13 +91,13 @@ public class Biology {
 		default:
 			break;
 		}
-		this.nextStatus =0;
+		nextStatus =0;
 		
 	}
 	
 	//return string for showmap 
 	public String status2symbol(){
-		return (this.status!=0)?"@":"-";
+		return (status!=0)?"@":"-";
 	}
 	
 	
@@ -106,11 +106,11 @@ public class Biology {
 	public void showNeibor(){
 		for(int i=0;i<9;i++)
 			if(i==4)
-				System.out.printf(" "+this.status2symbol());
-			else if(this.neibor[i]==null)
+				System.out.printf(" "+status2symbol());
+			else if(neibor[i]==null)
 				System.out.printf(((i%3==0)?"\n":"")+" -");
 			else
-				System.out.printf(((i%3==0)?"\n":"")+" "+this.neibor[i].status2symbol());
+				System.out.printf(((i%3==0)?"\n":"")+" "+neibor[i].status2symbol());
 	System.out.printf("\n\n");			
 	}
 	
