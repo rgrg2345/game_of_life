@@ -6,7 +6,7 @@ public class Biology {
 	public int status=0;
 	
 	//0.idle 1. willBorn 2.willDie  (Default idle)
-	private int nextStatus=0;
+	public int nextStatus=0;
 	
 	//0. die 1. alive   (Default die)
 	public int prevSatuts=0;
@@ -33,7 +33,6 @@ public class Biology {
 	
 	//find nextGeneration status
 	public void nextGeneration(){
-		nextStatus = 0;
 		if(status==0)//die == no biology
 			return;
 		int cnt=0;
@@ -43,12 +42,16 @@ public class Biology {
 			else if(neibor[i].status==1)
 				cnt++;
 		
-		if(cnt==1)
+		if(cnt==1){
 			findBornPos();
+			nextStatus = 0;
+		}
 		else if(cnt>1)
 			nextStatus = 2;
+		else
+			nextStatus = 0;
 	}
-	
+
 	//find Multiply pos
 	private void findBornPos(){
 		int pos;
@@ -74,18 +77,19 @@ public class Biology {
 				break;
 		}
 		if(pos<9){ // find
-			neibor[pos].nextStatus=1;	
+			neibor[pos].nextStatus=1;
 		}
 	}
 	
 	//do evolution
 	public void evolution(){
 		switch(nextStatus){
+		case 1:
+			born();
+			//System.out.printf("\nborn x:"+x+" y "+y+"\n");
+			break;
 		case 2:
 			die();
-			break;
-		case 1:
-			born();	
 			break;
 		case 0://idle
 		default:

@@ -40,14 +40,31 @@ public class environment {
 	public void nextGeneration(){
 		int size=mapSize;
 		generation++;
+		for(int i=0 ;i<size ;i++)
+			for(int j=0;j<size ;j++)
+				map[i][j].nextGeneration();
+		shownext();
 		
 		for(int i=0 ;i<size ;i++)
 			for(int j=0;j<size ;j++)
-				map[i][j].nextGeneration();//各生物物件判斷下代生存或者繁衍
-			
+					map[i][j].evolution();//生物演化至下一代
+	}
+	
+	//顯示下一代有幾隻會死亡 幾隻會繁衍 幾隻不動作
+	public void shownext(){
+		int size=mapSize;
+		//map[3][1].set();
+		int born=0,die=0,idle=0;
 		for(int i=0 ;i<size ;i++)
 			for(int j=0;j<size ;j++)
-					map[i][j].evolution();//生物演化至下一代
+				if(map[i][j].nextStatus==0)
+					idle++;
+				else if(map[i][j].nextStatus==1){
+					born++;
+				}
+				else
+					die++;
+		System.out.printf("\ndie:"+die+" born "+born+" idle "+idle+" \n");	
 	}
 	
 	
