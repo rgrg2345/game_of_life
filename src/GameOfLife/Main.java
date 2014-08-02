@@ -6,13 +6,13 @@ public class Main {
 		//LinkedList<environment>list = new LinkedList<environment>();
 		
 		//creat environment
-		environment env =new environment(30); // 建立物件和生成環境     mapsize 30x30
-		env.shownext();
+		environment env =new environment(10); // 建立物件和生成環境     mapsize 30x30
+		env.shownext();//這代的環境狀況
 		
-		env.RcreatBiology(450);//亂數生成生物
+		env.RcreatBiology(20);//亂數生成生物
 		env.showmap();//顯示生物分布
 		
-		for(int i=0;i<40;i++){
+		for(int i=0;i<100;i++){
 			//Thread.sleep(500);
 			System.out.print("\f");
 			env.nextGeneration();//生成下一代

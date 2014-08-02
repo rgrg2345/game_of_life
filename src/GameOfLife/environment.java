@@ -4,13 +4,12 @@ public class environment {
 
 	private int mapSize;
 	public Biology [][]map;
-	private int generation;
+	private int generation=0;
 	
 	//init environment
 	public environment(int size)
 	{
 		this.mapSize =size;
-		this.generation=0;
 		envInit();
 	}
 	
@@ -29,6 +28,8 @@ public class environment {
 	//creat random biology
 	public void RcreatBiology(int num){
 		int row,col;
+		if(num>mapSize*mapSize)//Error
+			return;
 		for(int i=0;i<num; i++)
 			if(map[row=(int)(Math.random()*mapSize)][col=(int)(Math.random()*mapSize)].status==0)
 				bornAndNeiborSet(row,col);
@@ -53,13 +54,12 @@ public class environment {
 	//顯示下一代有幾隻會死亡 幾隻會繁衍 幾隻不動作
 	public void shownext(){
 		int size=mapSize;
-		//map[3][1].set();
 		int born=0,die=0,idle=0;
 		for(int i=0 ;i<size ;i++)
 			for(int j=0;j<size ;j++)
-				if(map[i][j].nextStatus==0)
+				if(map[i][j].getStatus(1)==0)
 					idle++;
-				else if(map[i][j].nextStatus==1){
+				else if(map[i][j].getStatus(1)==1){
 					born++;
 				}
 				else
@@ -67,6 +67,11 @@ public class environment {
 		System.out.printf("\ndie:"+die+" born "+born+" idle "+idle+" \n");	
 	}
 	
+	
+	public void bornAndNeiborSet(int row,int col){
+		map[row][col].born();
+		setNeibor(row,col);
+	}
 	
 	//setNeibor
 	private void setNeibor(int row,int col){
@@ -80,24 +85,6 @@ public class environment {
 			}
 	}
 	
-	//*******************test function************************
-	
-	
-	public void bornAndNeiborSet(int row,int col){
-		map[row][col].born();
-		setNeibor(row,col);
-	}
-	
-	//Specific(x,y) born
-	public void bornPos(int row,int col){
-		bornAndNeiborSet(row,col);
-	}
-	//show the neibor
-	public void showPosneibor(int row,int col){
-		map[row][col].showNeibor();
-	}
-	
-	//*******************test function************************
 	
 	//show whole map
 	public void showmap(){
@@ -113,18 +100,24 @@ public class environment {
 				}
 			System.out.println();
 			}	
-	System.out.printf("\n\n");	
+		System.out.printf("\n\n");	
 	}
 	
+	//*******************test function************************
 	
 	
+	//Specific(x,y) born
+	public void bornPos(int row,int col){
+		bornAndNeiborSet(row,col);
+	}
+	//show the neibor
+	public void showPosneibor(int row,int col){
+		map[row][col].showNeibor();
+	}
 	
-	
-	
-	
-	
-	
-	
+	//*******************test function************************
+
+
 }
 
 

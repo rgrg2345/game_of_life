@@ -12,7 +12,7 @@ public class Biology {
 	public int prevSatuts=0;
 	
 	//neibor
-	public Biology []neibor= new Biology[9];
+	public Biology []neibor= new Biology[9];  //neibor[4]always be null because it represent itself
 	
 	//???
 	//?@?
@@ -29,6 +29,11 @@ public class Biology {
 	public void die(){
 		prevSatuts=status;
 		status=0;
+	}
+	
+	//0:status 1:nextstatus 2:prevstatus
+	public int getStatus(int type){
+		return (type==2)?prevSatuts:(type==1)?nextStatus:status;
 	}
 	
 	//find nextGeneration status
@@ -56,7 +61,7 @@ public class Biology {
 	private void findBornPos(){
 		int pos;
 		for(int i=0;;i++){
-			if(i>300){//maybe can't born
+			if(i>300){//another way to find if random couldn't find
 				int j;
 				for(j=0;j<9;j++)
 					if(i==4||neibor[j]==null||
