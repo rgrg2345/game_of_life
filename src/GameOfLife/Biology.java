@@ -33,9 +33,9 @@ public class Biology {
 	
 	//find nextGeneration status
 	public void nextGeneration(){
+		nextStatus = 0;
 		if(status==0)//die == no biology
 			return;
-		nextStatus = 0;
 		int cnt=0;
 		for(int i=0;i<9;i++)
 			if(i==4||neibor[i]==null)//out of range

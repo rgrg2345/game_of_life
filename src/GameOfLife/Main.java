@@ -8,7 +8,7 @@ public class Main {
 		//creat environment
 		environment env =new environment(30); // 建立物件和生成環境     mapsize 30x30
 		
-		env.RcreatBiology(200);//亂數生成生物
+		env.RcreatBiology(450);//亂數生成生物
 		env.showmap();//顯示生物分布
 		
 		for(int i=0;i<40;i++){
