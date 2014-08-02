@@ -46,7 +46,7 @@ public class Biology {
 			findBornPos();
 			nextStatus = 0;
 		}
-		else if(cnt>1)
+		else if(cnt>2)
 			nextStatus = 2;
 		else
 			nextStatus = 0;
@@ -86,7 +86,6 @@ public class Biology {
 		switch(nextStatus){
 		case 1:
 			born();
-			//System.out.printf("\nborn x:"+x+" y "+y+"\n");
 			break;
 		case 2:
 			die();
