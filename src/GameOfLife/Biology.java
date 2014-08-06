@@ -56,7 +56,7 @@ public class Biology {
 				cnt++;
 		
 		if(cnt==1){
-			findBornPos();
+			findBornPos();//satisfy propagate condition
 			nextStatus = 0;
 		}
 		else if(cnt>2)
@@ -65,7 +65,7 @@ public class Biology {
 			nextStatus = 0;
 	}
 
-	//find Multiply pos
+	//find propagate pos
 	private void findBornPos(){
 		int pos;
 		for(int i=0;;i++){

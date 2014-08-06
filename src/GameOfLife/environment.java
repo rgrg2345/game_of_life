@@ -36,11 +36,11 @@ public class environment {
 	//creat random biology
 	public void RcreatBiology(int num){
 		int row,col;
-		if(num>mapSize*mapSize)//Error
+		if(num>mapSize*mapSize||num<0)//Error
 			return;
 		for(int i=0;i<num; i++)
 			if(map[row=(int)(Math.random()*mapSize)][col=(int)(Math.random()*mapSize)].getStatus(0)==0)
-				bornAndNeiborSet(row,col);
+				map[row][col].born();
 			else
 				i--;
 	}
@@ -75,13 +75,8 @@ public class environment {
 		System.out.printf("\ndie:"+die+" born "+born+" idle "+idle+" \n");	
 	}
 	
-	
-	public void bornAndNeiborSet(int row,int col){
-		map[row][col].born();
-		setNeibor(row,col);
-	}
-	
-	//setNeibor
+
+	//關聯自身周圍物件
 	private void setNeibor(int row,int col){
 		int pos[]={-1,0,1};
 		for(int i=0;i<9;i++)
@@ -113,6 +108,10 @@ public class environment {
 	
 	//*******************test function************************
 	
+	public void bornAndNeiborSet(int row,int col){
+		map[row][col].born();
+		setNeibor(row,col);
+	}
 	
 	//Specific(x,y) born
 	public void bornPos(int row,int col){
