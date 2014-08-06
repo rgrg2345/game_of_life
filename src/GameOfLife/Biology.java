@@ -1,22 +1,30 @@
+/***********************************************************************
+	FileName	[Biology.java]
+	PackageName	[GameOfLife]
+	JavaProjectName	[GameOfLife]
+	synopsis	[Biology object and methods]
+	Author		[Cai Meng Ting]
+	Copyright	[ Copyleft(c) 2014 MITLAB, GIEE, NTUST, Taiwan ]
+/***********************************************************************/
 package GameOfLife;
 
 public class Biology {
 
 	//0. die 1. alive   (Default die)
-	public int status=0;
+	private int status=0;
 	
 	//0.idle 1. willBorn 2.willDie  (Default idle)
-	public int nextStatus=0;
+	private int nextStatus=0;
 	
 	//0. die 1. alive   (Default die)
-	public int prevSatuts=0;
+	private int prevSatuts=0;
 	
 	//neibor
 	public Biology []neibor= new Biology[9];  //neibor[4]always be null because it represent itself
 	
 	//???
 	//?@?
-	//???
+	//???  '?'is neibor
 	public void setNeibor(Biology neibor, int pos){//call by reference
 		this.neibor[pos]=neibor;
 	}

@@ -1,3 +1,11 @@
+/***********************************************************************
+	FileName	[environment.java]
+	PackageName	[GameOfLife]
+	JavaProjectName	[GameOfLife]
+	synopsis	[environment object and methods]
+	Author		[Cai Meng Ting]
+	Copyright	[ Copyleft(c) 2014 MITLAB, GIEE, NTUST, Taiwan ]
+/***********************************************************************/
 package GameOfLife;
 
 public class environment {
@@ -31,7 +39,7 @@ public class environment {
 		if(num>mapSize*mapSize)//Error
 			return;
 		for(int i=0;i<num; i++)
-			if(map[row=(int)(Math.random()*mapSize)][col=(int)(Math.random()*mapSize)].status==0)
+			if(map[row=(int)(Math.random()*mapSize)][col=(int)(Math.random()*mapSize)].getStatus(0)==0)
 				bornAndNeiborSet(row,col);
 			else
 				i--;
